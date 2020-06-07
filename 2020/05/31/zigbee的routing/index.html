@@ -404,7 +404,7 @@
 <p><img src="/images/many_to_one_routing_275x285.png" alt=""></p>
 <p>建立many-to-one路由的流程：</p>
 <ol>
-<li>中心节点广播many-to-one路由请求消息，消息中的目标发现地址设置为中心节点。TODO:确认</li>
+<li>中心节点广播many-to-one路由请求消息。</li>
 <li>网络中的其他路由节点接收到请求后在路由表里存储一个反向的many-to-one路由表条目。</li>
 <li>zigbee协议栈会根据每个邻居的链路质量选择一个最好的节点作为回到的中心节点的下一跳地址。</li>
 <li>many-to-one路由请求应该周期性的广播，以刷新网络中的反向路由。</li>
@@ -421,7 +421,7 @@
 <li>中心节点将这条路由反向存储在自己的路由记录表(Route Record Table)中。</li>
 </ol>
 <h3 id="High-Low-RAM-Concentrator-mode"><a href="#High-Low-RAM-Concentrator-mode" class="headerlink" title="High/Low RAM Concentrator mode"></a>High/Low RAM Concentrator mode</h3><ol>
-<li>High RAM 模式表示中心节点具备存储网络中所有节点的路径的能力；网络中的节点只需要在收到MTO路由请求后发送第一条消息之前发送路由记录到中心节点。</li>
+<li>High RAM 模式表示中心节点具备存储网络中所有节点的路径的能力；网络中的节点只需要在收到MTO路由请求后发送第一条消息之前发送路由记录到中心节点。（NXP有提到是当节点受到来自中心节点通过RRT发送过来的数据才停止这一行为）</li>
 <li>Low RAM 模式表示中心节点缺少RAM来存储所有的节点路径；网络中的路由节点在每次发送消息时都需要先发送路由记录。</li>
 </ol>
 <p>TODO：网络中的设备是如何确认中心节点的RAM类型呢？</p>
