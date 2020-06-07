@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="zigbee的routing机制,  ">
+    <meta name="keywords" content="zigbee-routing,  ">
     <meta name="description" content=" ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>zigbee的routing机制 | tueo</title>
+    <title>zigbee-routing | tueo</title>
     <link rel="icon" type="image/jpeg" href="/favicon-kitty.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -245,12 +245,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">zigbee的routing机制</h1>
+                    <h1 class="description center-align post-title">zigbee-routing</h1>
                 </div>
             </div>
         </div>
@@ -399,8 +399,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="zigbee的几种路由机制"><a href="#zigbee的几种路由机制" class="headerlink" title="zigbee的几种路由机制"></a>zigbee的几种路由机制</h2><p>• Table Routing<br>• Broadcast Routing<br>• Multicast Routing<br>• Many-to-One/Source Routing</p>
-<h2 id="Table-Routing机制"><a href="#Table-Routing机制" class="headerlink" title="Table Routing机制"></a>Table Routing机制</h2><h2 id="Many-to-one-多对一路由"><a href="#Many-to-one-多对一路由" class="headerlink" title="Many-to-one 多对一路由"></a>Many-to-one 多对一路由</h2><p>MTO路由是一种使网络中的其他路由设备拥有回到中心节点路径的路由机制。在实际的网络应用中，比较常见到这种情况，即大多数节点需要与一个单一节点进行通讯。这个单一节点一般称之为collector或者concentrator。<br>这种机制通过中心节点发送many-to-one广播消息在网络中的其他路由节点上建立反向路由。当路由节点接受到many-to-one路由请求后，它将回到中心节点的下一跳的信息存储在自己的路由表中。在路由表中有一个字段Many-to-one，表示该条目的目的地址为中心节点。</p>
+                <h1 id="1-zigbee的几种路由机制"><a href="#1-zigbee的几种路由机制" class="headerlink" title="1. zigbee的几种路由机制"></a>1. zigbee的几种路由机制</h1><p>• Table Routing<br>• Broadcast Routing<br>• Multicast Routing<br>• Many-to-One/Source Routing</p>
+<h2 id="1-1-Table-Routing机制"><a href="#1-1-Table-Routing机制" class="headerlink" title="1.1. Table Routing机制"></a>1.1. Table Routing机制</h2><p>TODO:</p>
+<h2 id="1-2-Many-to-one-多对一路由"><a href="#1-2-Many-to-one-多对一路由" class="headerlink" title="1.2. Many-to-one 多对一路由"></a>1.2. Many-to-one 多对一路由</h2><p>MTO路由是一种使网络中的其他路由设备拥有回到中心节点路径的路由机制。在实际的网络应用中，比较常见到这种情况，即大多数节点需要与一个单一节点进行通讯。这个单一节点一般称之为collector或者concentrator。<br>这种机制通过中心节点发送many-to-one广播消息在网络中的其他路由节点上建立反向路由。当路由节点接受到many-to-one路由请求后，它将回到中心节点的下一跳的信息存储在自己的路由表中。在路由表中有一个字段Many-to-one，表示该条目的目的地址为中心节点。</p>
 <p><img src="/images/many_to_one_routing_275x285.png" alt=""></p>
 <p>建立many-to-one路由的流程：</p>
 <ol>
@@ -409,7 +410,7 @@
 <li>zigbee协议栈会根据每个邻居的链路质量选择一个最好的节点作为回到的中心节点的下一跳地址。</li>
 <li>many-to-one路由请求应该周期性的广播，以刷新网络中的反向路由。</li>
 </ol>
-<h2 id="Source-Routing-源路由"><a href="#Source-Routing-源路由" class="headerlink" title="Source Routing 源路由"></a>Source Routing 源路由</h2><p>Source Routing可以让中心节点存储到网络中其他节点的完整路由。当中心节点拥有到达某个节点的完整路由时，之后可以为发往该节点的消息指定完整的路径。</p>
+<h2 id="1-3-Source-Routing-源路由"><a href="#1-3-Source-Routing-源路由" class="headerlink" title="1.3. Source Routing 源路由"></a>1.3. Source Routing 源路由</h2><p>Source Routing可以让中心节点存储到网络中其他节点的完整路由。当中心节点拥有到达某个节点的完整路由时，之后可以为发往该节点的消息指定完整的路径。</p>
 <p><img src="/images/source_routing.gif" alt=""></p>
 <p>建立Source Routing的流程：</p>
 <ol>
@@ -420,7 +421,7 @@
 <li>当路由记录消息到达中心节点时，它就包含了这一路上的每一跳节点的网络地址。</li>
 <li>中心节点将这条路由反向存储在自己的路由记录表(Route Record Table)中。</li>
 </ol>
-<h3 id="High-Low-RAM-Concentrator-mode"><a href="#High-Low-RAM-Concentrator-mode" class="headerlink" title="High/Low RAM Concentrator mode"></a>High/Low RAM Concentrator mode</h3><ol>
+<h3 id="1-3-1-High-Low-RAM-Concentrator-mode"><a href="#1-3-1-High-Low-RAM-Concentrator-mode" class="headerlink" title="1.3.1. High/Low RAM Concentrator mode"></a>1.3.1. High/Low RAM Concentrator mode</h3><ol>
 <li>High RAM 模式表示中心节点具备存储网络中所有节点的路径的能力；网络中的节点只需要在收到MTO路由请求后发送第一条消息之前发送路由记录到中心节点。（NXP有提到是当节点受到来自中心节点通过RRT发送过来的数据才停止这一行为）</li>
 <li>Low RAM 模式表示中心节点缺少RAM来存储所有的节点路径；网络中的路由节点在每次发送消息时都需要先发送路由记录。</li>
 </ol>
@@ -428,7 +429,7 @@
 <blockquote>
 <p>When Many to One (MTO) requests are broadcast, DO = 40 (bit 6) determines if the concentrator is operating in high or low RAM mode. </p>
 </blockquote>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.digi.com/resources/documentation/Digidocs/90001942-13/concepts/c_source_routing.htm#_bookmark179" target="_blank" rel="noopener">Source routing</a><br><a href="https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/12/18/_many-to-one_source-JRvm" target="_blank" rel="noopener">浅谈Many-to-One/Source Routing机制</a></p>
+<h2 id="1-4-参考资料"><a href="#1-4-参考资料" class="headerlink" title="1.4. 参考资料"></a>1.4. 参考资料</h2><p><a href="https://www.digi.com/resources/documentation/Digidocs/90001942-13/concepts/c_source_routing.htm#_bookmark179" target="_blank" rel="noopener">Source routing</a><br><a href="https://www.silabs.com/community/wireless/zigbee-and-thread/knowledge-base.entry.html/2017/12/18/_many-to-one_source-JRvm" target="_blank" rel="noopener">浅谈Many-to-One/Source Routing机制</a></p>
 
             </div>
             <hr/>
@@ -454,7 +455,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://tueo.github.io/2020/05/31/zigbee%E7%9A%84routing/">https://tueo.github.io/2020/05/31/zigbee%E7%9A%84routing/</a>
+                    <a href="https://tueo.github.io/2020/05/31/zigbee-routing/">https://tueo.github.io/2020/05/31/zigbee-routing/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -540,20 +541,20 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2020/05/31/zigbee%E7%9A%84routing/">
+                <a href="/2020/05/31/zigbee-routing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="zigbee的routing机制">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="zigbee-routing">
                         
-                        <span class="card-title">zigbee的routing机制</span>
+                        <span class="card-title">zigbee-routing</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            zigbee的几种路由机制• Table Routing• Broadcast Routing• Multicast Routing• Many-to-One/Source Routing
-Table Routing机制Many-to-on
+                            1. zigbee的几种路由机制• Table Routing• Broadcast Routing• Multicast Routing• Many-to-One/Source Routing
+1.1. Table Routing机制TO
                         
                     </div>
                     <div class="publish-info">
@@ -587,19 +588,19 @@ Table Routing机制Many-to-on
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/31/zigbee%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E8%A1%A8/">
+                <a href="/2020/05/31/zigbee-table/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="zigbee中的几种表">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="zigbee-table">
                         
-                        <span class="card-title">zigbee中的几种表</span>
+                        <span class="card-title">zigbee-table</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            路由记录表 Route Record Table
+                            1. 路由记录表 Route Record Table
 
 
 Field Name
@@ -612,7 +613,7 @@ Reference
 Network Address
 Integer
 0x0000- 0xfff7
-The des
+The 
                         
                     </div>
                     <div class="publish-info">
