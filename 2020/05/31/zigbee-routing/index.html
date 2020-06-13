@@ -400,8 +400,26 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="1-zigbee的几种路由机制"><a href="#1-zigbee的几种路由机制" class="headerlink" title="1. zigbee的几种路由机制"></a>1. zigbee的几种路由机制</h1><p>• Table Routing<br>• Broadcast Routing<br>• Multicast Routing<br>• Many-to-One/Source Routing</p>
-<h2 id="1-1-Table-Routing机制"><a href="#1-1-Table-Routing机制" class="headerlink" title="1.1. Table Routing机制"></a>1.1. Table Routing机制</h2><p>TODO:</p>
-<h2 id="1-2-Many-to-one-多对一路由"><a href="#1-2-Many-to-one-多对一路由" class="headerlink" title="1.2. Many-to-one 多对一路由"></a>1.2. Many-to-one 多对一路由</h2><p>MTO路由是一种使网络中的其他路由设备拥有回到中心节点路径的路由机制。在实际的网络应用中，比较常见到这种情况，即大多数节点需要与一个单一节点进行通讯。这个单一节点一般称之为collector或者concentrator。<br>这种机制通过中心节点发送many-to-one广播消息在网络中的其他路由节点上建立反向路由。当路由节点接受到many-to-one路由请求后，它将回到中心节点的下一跳的信息存储在自己的路由表中。在路由表中有一个字段Many-to-one，表示该条目的目的地址为中心节点。</p>
+<h2 id="1-1-Table-Routing"><a href="#1-1-Table-Routing" class="headerlink" title="1.1. Table Routing"></a>1.1. Table Routing</h2><p>网络中的节点通过route discover来建立到达其他节点的路径，如果路径已经建立了，之后发送消息就遵循下面的步骤：</p>
+<ol>
+<li>消息的发送方在自己的路由表中找到发往接收方的下一跳的节点的地址，然后把消息发给这个节点。</li>
+<li>在发送方和接收方之间的节点在自己的路由表中找到通往接收方节点的下一跳节点的地址，向接力一样最终发往消息的接收方。</li>
+<li>如果中间路由失败了，那么会产生一个错误，送到消息的发送方，消息的发送方就可以重新发起route discover过程来重新建立路由。</li>
+</ol>
+<h3 id="Route-Discovery-路由发现"><a href="#Route-Discovery-路由发现" class="headerlink" title="Route Discovery 路由发现"></a>Route Discovery 路由发现</h3><p>当一个节点希望发送数据包到另外一个节点时，它先检查自己的route table中是否包含目的节点的route。  </p>
+<ul>
+<li>如果包含，直接将数据发送给下一跳节点</li>
+<li>如果不包含，它发起一个<strong>route discovery</strong>过程。<br>route discovery的启动标志是源节点广播 <strong>Route Request(RREQ)</strong>数据包。  </li>
+</ul>
+<p>RREQ数据包包含几个组成部分：</p>
+<ol>
+<li>Route Request ID(AODV: sequence number)</li>
+<li>目标网络地址</li>
+<li>路径损耗</li>
+<li>源地址</li>
+</ol>
+<p>目的节点接收到RREQ消息后单播一个<strong>Route Reply</strong>消息到源地址。之后源节点向目的节点发送消息就可以通过这个已经建立的route来进行，中转节点在discovery期间也会建立到达目的节点的route。</p>
+<h3 id="Route-maintenance-路由维护"><a href="#Route-maintenance-路由维护" class="headerlink" title="Route maintenance 路由维护"></a>Route maintenance 路由维护</h3><h2 id="1-2-Many-to-one-多对一路由"><a href="#1-2-Many-to-one-多对一路由" class="headerlink" title="1.2. Many-to-one 多对一路由"></a>1.2. Many-to-one 多对一路由</h2><p>MTO路由是一种使网络中的其他路由设备拥有回到中心节点路径的路由机制。在实际的网络应用中，比较常见到这种情况，即大多数节点需要与一个单一节点进行通讯。这个单一节点一般称之为collector或者concentrator。<br>这种机制通过中心节点发送many-to-one广播消息在网络中的其他路由节点上建立反向路由。当路由节点接受到many-to-one路由请求后，它将回到中心节点的下一跳的信息存储在自己的路由表中。在路由表中有一个字段Many-to-one，表示该条目的目的地址为中心节点。</p>
 <p><img src="/images/many_to_one_routing_275x285.png" alt=""></p>
 <p>建立many-to-one路由的流程：</p>
 <ol>
@@ -554,7 +572,7 @@
                     <div class="summary block-with-text">
                         
                             1. zigbee的几种路由机制• Table Routing• Broadcast Routing• Multicast Routing• Many-to-One/Source Routing
-1.1. Table Routing机制TO
+1.1. Table Routing网络中的
                         
                     </div>
                     <div class="publish-info">
@@ -613,7 +631,7 @@ Reference
 Network Address
 Integer
 0x0000- 0xfff7
-The 
+rout
                         
                     </div>
                     <div class="publish-info">

@@ -412,22 +412,233 @@
 <td>Network Address</td>
 <td>Integer</td>
 <td>0x0000- 0xfff7</td>
-<td>The destination network address for this route record.</td>
+<td>route record的目的网络地址</td>
 </tr>
 <tr>
 <td>Relay Count</td>
 <td>Integer</td>
 <td>0x0000 - 0xffff</td>
-<td>The count of relay nodes from concentrator to the destination.</td>
+<td>从集中器到目的节点的中继数量</td>
 </tr>
 <tr>
 <td>Path</td>
 <td>Set of Network Addresses</td>
 <td></td>
-<td>The set of network addresses that represent the route in order from the concentrator to the destination.</td>
+<td>网络地址集合，表示从集中器到目的节点之间的节点地址集合</td>
 </tr>
 </tbody></table>
-<h1 id="2-邻居表-Neighbor-Table"><a href="#2-邻居表-Neighbor-Table" class="headerlink" title="2. 邻居表 Neighbor Table"></a>2. 邻居表 Neighbor Table</h1><h1 id="3-路由表-Routing-Table"><a href="#3-路由表-Routing-Table" class="headerlink" title="3. 路由表 Routing Table"></a>3. 路由表 Routing Table</h1><h1 id="4-路由发现表-Route-Discovery-Table"><a href="#4-路由发现表-Route-Discovery-Table" class="headerlink" title="4. 路由发现表 Route Discovery Table"></a>4. 路由发现表 Route Discovery Table</h1>
+<h1 id="2-邻居表-Neighbor-Table"><a href="#2-邻居表-Neighbor-Table" class="headerlink" title="2. 邻居表 Neighbor Table"></a>2. 邻居表 Neighbor Table</h1><table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Extended address</td>
+<td>IEEE地址</td>
+</tr>
+<tr>
+<td>Network address</td>
+<td>节点网络地址</td>
+</tr>
+<tr>
+<td>Device type</td>
+<td>节点类型(coordinator router end device)</td>
+</tr>
+<tr>
+<td>RxOnWhenIdle</td>
+<td>idle时是否可以接收 父节点和子节点必须present</td>
+</tr>
+<tr>
+<td>End Device Configuration</td>
+<td>终端节点的配置</td>
+</tr>
+<tr>
+<td>Timeout Counter</td>
+<td>end device remaining time (sec)</td>
+</tr>
+<tr>
+<td>Device timeout</td>
+<td>end device child timeout(sec)</td>
+</tr>
+<tr>
+<td>Relationship</td>
+<td>与节点之间的关系</td>
+</tr>
+<tr>
+<td>Transmit Failure</td>
+<td>指示之前的数据通讯是否成功，数值越大，失败越多</td>
+</tr>
+<tr>
+<td>LQI</td>
+<td>该节点的链路质量</td>
+</tr>
+<tr>
+<td>Outgoing Cost</td>
+<td>传出损耗 0表示无效</td>
+</tr>
+<tr>
+<td>Age</td>
+<td></td>
+</tr>
+<tr>
+<td>Incoming beacon timestamp</td>
+<td>从邻居接收到的最后一条beacon帧的时间戳</td>
+</tr>
+<tr>
+<td>Beacon transmission tiem offset</td>
+<td></td>
+</tr>
+<tr>
+<td>Keepalive Received</td>
+<td>表示自从router重启以来，至少接收到一条来自终端设备的数据？</td>
+</tr>
+<tr>
+<td>Extended PAN ID</td>
+<td>设备所属网络的PAN ID</td>
+</tr>
+<tr>
+<td>Logical channel</td>
+<td>设备所在的信道</td>
+</tr>
+<tr>
+<td>Depth</td>
+<td>邻居节点的tree depth</td>
+</tr>
+<tr>
+<td>Beacon order</td>
+<td>设备的IEEE 802.15.4信标顺序</td>
+</tr>
+<tr>
+<td>Permit joining</td>
+<td>设备是否正在允许join</td>
+</tr>
+<tr>
+<td>Potential parent</td>
+<td>设备是否是潜在的父节点</td>
+</tr>
+</tbody></table>
+<h1 id="3-路由表-Routing-Table"><a href="#3-路由表-Routing-Table" class="headerlink" title="3. 路由表 Routing Table"></a>3. 路由表 Routing Table</h1><table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>size</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Destination address</td>
+<td>2 octets</td>
+<td>网络地址或者Group ID</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>3 bits</td>
+<td>route的状态</td>
+</tr>
+<tr>
+<td>No route cache</td>
+<td>1 bit</td>
+<td>标志位：目的地址没有存储源路由</td>
+</tr>
+<tr>
+<td>Many-to-one</td>
+<td>1 bit</td>
+<td>标志位：目的地址是发出MTO路由请求的集中器</td>
+</tr>
+<tr>
+<td>Route record required</td>
+<td>1 bit</td>
+<td>标志位：在下一个数据包发送到目的节点前应当先将route record发送到</td>
+</tr>
+<tr>
+<td>GroupID flag</td>
+<td>1 bit</td>
+<td>标志位：目的地址是一个Group ID</td>
+</tr>
+<tr>
+<td>Next-hop address</td>
+<td>2 octets</td>
+<td>下一跳的网络地址</td>
+</tr>
+</tbody></table>
+<h2 id="3-1-路由表中end-device的Destination-address"><a href="#3-1-路由表中end-device的Destination-address" class="headerlink" title="3.1. 路由表中end device的Destination address"></a>3.1. 路由表中end device的Destination address</h2><p>根据地址分配方式的不同而不同，当<strong>nwkAddrAlloc</strong>等于0时表示使用分布式地址分配方式，等于2时表示使用随机地址分配方式。<br>当使用随机地址分配方式时，路由表中end device的地址为该设备的实际地址。当使用分布式地址分配方式时，路由表中end device的地址为其父节点的地址。</p>
+<h2 id="3-2-Status"><a href="#3-2-Status" class="headerlink" title="3.2. Status"></a>3.2. Status</h2><p>路由表条目的status如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>num</th>
+<th>status</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0x0</td>
+<td>active</td>
+<td>有效的</td>
+</tr>
+<tr>
+<td>0x1</td>
+<td>discovery_underway</td>
+<td>正在进行路由发现</td>
+</tr>
+<tr>
+<td>0x2</td>
+<td>discovery_failed</td>
+<td>路由发现失败</td>
+</tr>
+<tr>
+<td>0x3</td>
+<td>inactive</td>
+<td>无效的</td>
+</tr>
+<tr>
+<td>0x4</td>
+<td>validation_underway</td>
+<td>正在核验有效性</td>
+</tr>
+</tbody></table>
+<h1 id="4-路由发现表-Route-Discovery-Table"><a href="#4-路由发现表-Route-Discovery-Table" class="headerlink" title="4. 路由发现表 Route Discovery Table"></a>4. 路由发现表 Route Discovery Table</h1><table>
+<thead>
+<tr>
+<th>Field Name</th>
+<th>size(octets)</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Route request ID</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Source address</td>
+<td>route request发起方的网络地址</td>
+<td></td>
+</tr>
+<tr>
+<td>Sender address</td>
+<td>这条路由请求的最佳上家，之后的route reply会发给这个节点</td>
+<td></td>
+</tr>
+<tr>
+<td>Forward cost</td>
+<td>从发起方到当前节点的累计路径损耗</td>
+<td></td>
+</tr>
+<tr>
+<td>Residual cost</td>
+<td>从当前节点到目的节点的累计路径损耗</td>
+<td></td>
+</tr>
+<tr>
+<td>Expiration time</td>
+<td>倒数计时器，指示路由发现截止时间</td>
+<td></td>
+</tr>
+</tbody></table>
+
             </div>
             <hr/>
 
@@ -550,7 +761,7 @@
                     <div class="summary block-with-text">
                         
                             1. zigbee的几种路由机制• Table Routing• Broadcast Routing• Multicast Routing• Many-to-One/Source Routing
-1.1. Table Routing机制TO
+1.1. Table Routing网络中的
                         
                     </div>
                     <div class="publish-info">
