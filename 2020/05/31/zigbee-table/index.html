@@ -519,6 +519,7 @@
 <td>设备是否是潜在的父节点</td>
 </tr>
 </tbody></table>
+<h2 id="2-1-邻居表老化"><a href="#2-1-邻居表老化" class="headerlink" title="2.1. 邻居表老化"></a>2.1. 邻居表老化</h2><p>age字段每过一个nwkLinkStatusPeriod，就会增加，当age字段超过 nwkRouterAgeLimit时就会将Outgoing Cost字段设置为0。当有新的邻居节点时，这个邻居节点就可以被抛弃掉。<br>end device不会发出link status, 所以这一机制不起作用。</p>
 <h1 id="3-路由表-Routing-Table"><a href="#3-路由表-Routing-Table" class="headerlink" title="3. 路由表 Routing Table"></a>3. 路由表 Routing Table</h1><table>
 <thead>
 <tr>
@@ -563,8 +564,8 @@
 <td>下一跳的网络地址</td>
 </tr>
 </tbody></table>
-<h2 id="3-1-路由表中end-device的Destination-address"><a href="#3-1-路由表中end-device的Destination-address" class="headerlink" title="3.1. 路由表中end device的Destination address"></a>3.1. 路由表中end device的Destination address</h2><p>根据地址分配方式的不同而不同，当<strong>nwkAddrAlloc</strong>等于0时表示使用分布式地址分配方式，等于2时表示使用随机地址分配方式。<br>当使用随机地址分配方式时，路由表中end device的地址为该设备的实际地址。当使用分布式地址分配方式时，路由表中end device的地址为其父节点的地址。</p>
-<h2 id="3-2-Status"><a href="#3-2-Status" class="headerlink" title="3.2. Status"></a>3.2. Status</h2><p>路由表条目的status如下所示：</p>
+<h2 id="3-2-路由表中end-device的Destination-address"><a href="#3-2-路由表中end-device的Destination-address" class="headerlink" title="3.2. 路由表中end device的Destination address"></a>3.2. 路由表中end device的Destination address</h2><p>根据地址分配方式的不同而不同，当<strong>nwkAddrAlloc</strong>等于0时表示使用分布式地址分配方式，等于2时表示使用随机地址分配方式。<br>当使用随机地址分配方式时，路由表中end device的地址为该设备的实际地址。当使用分布式地址分配方式时，路由表中end device的地址为其父节点的地址。</p>
+<h2 id="3-3-Status"><a href="#3-3-Status" class="headerlink" title="3.3. Status"></a>3.3. Status</h2><p>路由表条目的status如下所示：</p>
 <table>
 <thead>
 <tr>
@@ -1028,16 +1029,6 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             
             
             
-            <span id="busuanzi_container_site_pv">
-                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
-                    class="white-color"></span>&nbsp;次
-            </span>
-            
-            
-            <span id="busuanzi_container_site_uv">
-                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
-                    class="white-color"></span>&nbsp;人
-            </span>
             
             <br>
             
